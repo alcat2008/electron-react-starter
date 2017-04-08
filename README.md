@@ -4,7 +4,7 @@ Boilerplate to start electron project with a bunch of awesome react technologies
 
 [Electron](http://electron.atom.io/) application boilerplate based on [React](https://facebook.github.io/react/), [Redux](https://github.com/reactjs/redux), [React Router](https://github.com/reactjs/react-router), [Webpack](http://webpack.github.io/docs/), [React Transform HMR](https://github.com/gaearon/react-transform-hmr) for rapid application development
 
-This project was forked from repository [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate), and update with some advantages.
+This project was forked from repository [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate), and update with some features, such as more structuring files, less support, css modular, build settings and so on.
 
 ## Screenshot
 
