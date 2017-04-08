@@ -1,0 +1,2 @@
+
+import './global/index.less';

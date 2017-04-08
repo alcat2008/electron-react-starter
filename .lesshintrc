@@ -1,0 +1,15 @@
+{
+  "fileExtensions": [".less", ".css"],
+  "excludedFiles": [],
+  "spaceAfterPropertyColon": {
+    "enabled": true,
+    "style": "one_space" // Comments are allowed
+  },
+  "emptyRule": true, // If there are no options for a rule, you can simply enable it by setting it to true
+  "importantRule": false, // To disable a rule completely, set it to false
+  "propertyOrdering": false, // Make sure properties are sorted in a particular order.
+  "idSelector": false, // Disallow the usage of ID selectors.
+  "stringQuotes": false, // All strings should use single quotes since they are often easier to type since the Shift key doesn't need to be pressed.
+  "urlFormat": false, // All URLs should be relative.
+  "zeroUnit": false // Zero values should include a unit for consistency with other values.
+}

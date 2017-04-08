@@ -1,0 +1,59 @@
+{
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "rules": {
+    "arrow-parens": ["off"],
+    "arrow-body-style": ["off", "as-needed"],
+    "comma-dangle": ["warn", "only-multiline"],
+    "global-require": ["warn"],
+    "import/no-unresolved": ["error", { ignore: ['\.img$', '\.png$'] }],
+    "import/no-named-as-default": ["off"],
+    "import/prefer-default-export": ["off"],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.development.js", "test/**", "*.js"]}],
+    "max-len": ["error", 120, 2],
+    "no-console": ["error"],
+    "new-cap": ["error", { "capIsNewExceptions": [ "Compose" ] }],
+    "no-param-reassign": ["error", { "props": false }],
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+    "no-underscore-dangle": ["off", { "allowAfterThis": true }],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "caughtErrors": "none" }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "object-shorthand": ["error"],
+    "padded-blocks": ["error", "never"],
+    "prefer-template": ["off"],
+    "class-methods-use-this": ["off"],
+    "quote-props": ["error", "consistent-as-needed", { "keywords": true }],
+    "react/jsx-boolean-value": ["off", "always"],
+    "react/jsx-pascal-case": ["warn", { ignore: [ ] }],
+    "react/prop-types": ["off", { ignore: ["children", "style", "params", "routing", "location", "history"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/sort-comp": ["warn", { order: [ 'static-methods', 'constructor' ]}],
+    "react/forbid-prop-types": ["off"],
+    "react/prefer-stateless-function": ["off"],
+    "jsx-a11y/href-no-hash": ["off"],
+    "jsx-a11y/no-static-element-interactions": ["off"],
+    "func-names": ["off"],
+  },
+  "plugins": [
+    "flowtype",
+    "flowtype-errors",
+    "import",
+    "promise",
+    "react"
+  ]
+}
