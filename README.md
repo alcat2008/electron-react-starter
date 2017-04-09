@@ -84,7 +84,9 @@ $ UPGRADE_EXTENSIONS=1 npm run dev
 $ set UPGRADE_EXTENSIONS=1 && npm run dev
 ```
 
+## Debug main process
 
+It is recommended to debug main process with VSCode. For more on the tutorial, please consult the blog [使用 VSCode 调试基于 ES6 的 electron 主进程](http://front-ender.me//architecture/electron-debug-vscode.html).
 
 ## CSS Modules
 
