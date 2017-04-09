@@ -5993,13 +5993,6 @@ rcfinder@^0.1.8:
   dependencies:
     lodash.clonedeep "^4.3.2"
 
-react-addons-css-transition-group@^15.4.1:
-  version "15.5.1"
-  resolved "http://registry.npm.taobao.org/react-addons-css-transition-group/download/react-addons-css-transition-group-15.5.1.tgz#fc4f567c3003b113713dc517b81661fef804beec"
-  dependencies:
-    fbjs "^0.8.4"
-    object-assign "^4.1.0"
-
 react-addons-test-utils@^15.4.1:
   version "15.5.0"
   resolved "http://registry.npm.taobao.org/react-addons-test-utils/download/react-addons-test-utils-15.5.0.tgz#d09f7475ba7728bcdb288303a687b64c75b31a5c"

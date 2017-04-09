@@ -7,7 +7,7 @@ import * as CounterActions from '../actions/counter';
 
 import styles from '../styles/views/Counter.less';
 
-export class Counter extends React.Component {
+class Counter extends React.Component {
   render() {
     const { actions, counter } = this.props;
     const { increment, incrementIfOdd, incrementAsync, decrement } = actions;

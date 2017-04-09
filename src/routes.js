@@ -1,7 +1,7 @@
 // @flow
-import App from './App';
-import Home from './components/Home';
-import Counter from './components/Counter';
+import App from './containers/App';
+import Home from './containers/Home';
+import Counter from './containers/Counter';
 
 const routes = {
   path: '/',
