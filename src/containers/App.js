@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push, replace, goBack } from 'react-router-redux';
 
+import ipc from '../service/ipc';
+
 import '../styles/global/index.less';
 
 class App extends React.Component {
@@ -11,9 +13,14 @@ class App extends React.Component {
     children: HTMLElement
   };
 
+  _notify = () => {
+    ipc.send('ipc-message', 'notification test');
+  }
+
   render() {
     return (
       <div>
+        <button onClick={this._notify}>show notification</button>
         {React.cloneElement(
           this.props.children,
           {

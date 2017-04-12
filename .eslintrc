@@ -23,7 +23,7 @@
     "import/no-unresolved": ["error", { ignore: ['\.img$', '\.png$'] }],
     "import/no-named-as-default": ["off"],
     "import/prefer-default-export": ["off"],
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.development.js", "test/**", "*.js"]}],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.development.js", "**/main/**", "**/platform.js", "test/**", "*.js"]}],
     "max-len": ["error", 120, 2],
     "no-console": ["error"],
     "new-cap": ["error", { "capIsNewExceptions": [ "Compose" ] }],

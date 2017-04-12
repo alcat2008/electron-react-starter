@@ -6,8 +6,14 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes';
 import configureStore from './store/configureStore';
 import analytics from './service/analytics';
+import ipc from './service/ipc';
+import { initContextMenu } from './utils/platform';
 
 const store = configureStore();
+
+ipc.init();
+initContextMenu(store.dispatch);
+
 const history = syncHistoryWithStore(hashHistory, store);
 history.listen(location => {
   analytics.track(location.pathname);

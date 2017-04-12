@@ -1,7 +1,9 @@
-// eslint-disable-next-line
-import { app, BrowserWindow, Menu } from 'electron';
-import debug from 'debug';
-import { createMenu } from './main/menu';
+
+const { app, BrowserWindow, Menu, Tray, dialog, nativeImage } = require('electron'); // eslint-disable-line
+const path = require('path');
+const debug = require('debug');
+const { createMenu } = require('./main/menu');
+const Ipc = require('./main/ipc');
 
 const log = debug('electron-react:main');
 log('main process begins initialize');
@@ -50,6 +52,11 @@ app.on('ready', async () => {
     show: false,
     width: 1024,
     height: 768,
+    webPreferences: {
+      // nodeIntegration: true,
+      // webSecurity: true,
+      preload: path.resolve(path.join(__dirname, '../resources/lib/preload.js'))
+    },
   });
 
   if (isDev) {
@@ -73,24 +80,8 @@ app.on('ready', async () => {
 
   if (isDev) {
     mainWindow.openDevTools();
-    // mainWindow.webContents.on('context-menu', (e, props) => {
-    //   const { x, y } = props;
-    //
-    //   Menu.buildFromTemplate([{
-    //     label: 'Inspect element',
-    //     click() {
-    //       mainWindow.inspectElement(x, y);
-    //     }
-    //   }, {
-    //     label: '新 Tab 页打开',
-    //     click() {
-    //       log('props ', props);
-    //       log('e ', e);
-    //       log('getFocusedWebContents', mainWindow.webContents.getFocusedWebContents());
-    //     }
-    //   }]).popup(mainWindow);
-    // });
   }
 
   Menu.setApplicationMenu(createMenu(mainWindow));
+  Ipc.init(mainWindow);
 });

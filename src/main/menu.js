@@ -1,7 +1,6 @@
 
 // Electron requires
-// eslint-disable-next-line
-import { app, dialog, shell, Menu } from 'electron';
+const { app, dialog, shell, Menu } = require('electron');
 
 const separatorItem = {
   type: 'separator'
