@@ -51,11 +51,11 @@ function linkableMenu(dispatch) {
 
 function initContextMenu(_dispatch) {
   context.use(input);
+  context.use(linkableMenu(_dispatch));
 
   if (process.env.NODE_ENV === 'development') {
     const debugMenu = require('debug-menu'); // eslint-disable-line
     context.use(debugMenu.middleware);
-    context.use(linkableMenu(_dispatch));
   }
 
   context.activate();
