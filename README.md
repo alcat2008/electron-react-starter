@@ -4,7 +4,7 @@ Boilerplate to start electron project with a bunch of awesome react technologies
 
 [Electron](http://electron.atom.io/) application boilerplate based on [React](https://facebook.github.io/react/), [Redux](https://github.com/reactjs/redux), [React Router](https://github.com/reactjs/react-router), [Webpack](http://webpack.github.io/docs/), [React Transform HMR](https://github.com/gaearon/react-transform-hmr) for rapid application development
 
-This project was forked from repository [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate), and update with some features, such as more structuring files, less support, css modular, build settings and so on.
+This project was forked from repository [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate), and update with some features, such as more structuring files, less support, css modular, auto update, build settings and so on.
 
 ## Screenshot
 
@@ -54,6 +54,19 @@ localStorage.debug = 'electron-react:*'
 ```
 
 And then refresh the page.
+
+
+## Auto update
+
+Auto update is implemented by [electron-simple-updater](https://github.com/megahertz/electron-simple-updater). The URL to [updates.json](https://github.com/megahertz/electron-simple-updater/blob/master/example/updates.json) file should be setting in `package.json`, you can set this link in `package.json:updater.url`.
+
+Automatic updates on macOS is not avaliable for the moment, you should sign the application for yourself.
+
+
+## IPC
+
+The service for IPC is provided for both main and render process, with the same name `ipc.js`.
+
 
 ## DevTools
 
