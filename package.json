@@ -4,6 +4,31 @@
   "version": "0.1.0",
   "description": "Boilerplate to start electron project with a bunch of awesome react technologies",
   "main": "dist/main.js",
+  "homepage": "https://github.com/alcat2008/electron-react-starter#readme",
+  "wiki": "https://github.com/alcat2008/electron-react-starter/wikis/home",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alcat2008/electron-react-starter.git"
+  },
+  "author": {
+    "name": "alcat2008",
+    "email": "ge_yangyang@126.com",
+    "url": "https://github.com/alcat2008"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alcat2008/electron-react-starter/issues"
+  },
+  "keywords": [
+    "electron",
+    "boilerplate",
+    "starter",
+    "react",
+    "redux",
+    "react-router",
+    "webpack",
+    "react-hot"
+  ],
   "scripts": {
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 mocha --retries 2 --compilers js:babel-register --recursive --require ./test/setup.js test/**/*.spec.js",
     "test-watch": "npm test -- --watch",
@@ -12,7 +37,7 @@
     "eslint-fix": "npm run eslint -- --fix",
     "lesshint": "lesshint src/styles -r config/lesshint-report.js",
     "lint": "npm run eslint && npm run lesshint",
-    "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 -r babel-register server.js",
+    "hot-server": "cross-env NODE_ENV=development node -r babel-register server.js",
     "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config config/webpack.config.electron.js --progress --profile --colors",
     "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config config/webpack.config.production.js --progress --profile --colors",
     "build": "npm run build-main && npm run build-renderer",
@@ -22,7 +47,7 @@
     "postinstall-deprecated": "concurrently \"npm run flow-typed-install\" \"install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
     "dev": "npm run hot-server -- --start-hot",
     "package": "npm run build && build --publish never",
-    "package-win": "npm run build && build --win --x64",
+    "package-win": "npm run build && build --win",
     "package-linux": "npm run build && build --linux",
     "package-all": "npm run build && build -mwl",
     "cleanup": "mop -v",
@@ -52,7 +77,10 @@
       "package.json"
     ],
     "win": {
-      "target": "nsis"
+      "target": "squirrel"
+    },
+    "squirrelWindows": {
+      "iconUrl": "https://raw.githubusercontent.com/megahertz/electron-simple-updater/master/example/build/icon.ico"
     },
     "linux": {
       "target": [
@@ -65,33 +93,12 @@
     "buildResources": "resources/build",
     "output": "release"
   },
+  "updater": {
+    "url": "http://xxx/update.json"
+  },
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alcat2008/electron-react-starter.git"
-  },
-  "author": {
-    "name": "alcat2008",
-    "email": "ge_yangyang@126.com",
-    "url": "https://github.com/alcat2008"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/alcat2008/electron-react-starter/issues"
-  },
-  "keywords": [
-    "electron",
-    "boilerplate",
-    "starter",
-    "react",
-    "redux",
-    "react-router",
-    "webpack",
-    "react-hot"
-  ],
-  "homepage": "https://github.com/alcat2008/electron-react-starter#readme",
   "devDependencies": {
     "asar": "^0.12.3",
     "babel-core": "^6.21.0",
@@ -165,6 +172,7 @@
     "electron-contextmenu-middleware": "^1.0.3",
     "electron-input-menu": "^2.1.0",
     "electron-notifications": "^1.0.0",
+    "electron-simple-updater": "^1.2.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "react": "^15.4.1",

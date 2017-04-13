@@ -1,6 +1,8 @@
 
 // Electron requires
 const { app, dialog, shell, Menu } = require('electron');
+const updater = require('electron-simple-updater');
+const pkg = require('../../package.json');
 
 const separatorItem = {
   type: 'separator'
@@ -9,12 +11,11 @@ const separatorItem = {
 function TemplateBuilder(platform, mainWindow) {
   const appName = app.getName();
   const isDarwin = platform === 'darwin';
-  const firstMenuName = isDarwin ? appName : 'File';
 
   this.appMenu = null;
   if (isDarwin) {
     this.appMenu = {
-      label: '&' + firstMenuName,
+      label: '&' + appName,
       submenu: [
         {
           label: 'About ' + appName,
@@ -32,17 +33,6 @@ function TemplateBuilder(platform, mainWindow) {
               buttons: ['OK'],
               message: '模块构建中，敬请期待！'
             });
-            // try {
-            //   UpdateManager.checkForUpdates((hasUpdate) => {
-            //     if (hasUpdate) {
-            //       return dialog.showMessageBox(QUESTION.shouldRestartAndUpdate) == 0
-            //     }
-            //     dialog.showMessageBox(INFO.noUpdateIsAvailable)
-            //     return false
-            //   })
-            // } catch (e) {
-            //   Logger.error(e)
-            // }
           }
         }, separatorItem, {
           label: 'Services',
@@ -59,6 +49,38 @@ function TemplateBuilder(platform, mainWindow) {
         }, {
           label: 'Show All',
           role: 'unhide'
+        }, separatorItem, {
+          label: 'Quit',
+          accelerator: 'Command+Q',
+          click() {
+            app.quit();
+          }
+        }
+      ]
+    };
+  } else if (platform === 'win32') {
+    this.appMenu = {
+      label: 'File',
+      submenu: [
+        {
+          label: 'About ' + appName,
+          role: 'about',
+          click() {
+            dialog.showMessageBox(mainWindow, {
+              buttons: ['OK'],
+              message: `${appName} Desktop ${app.getVersion()}`
+            });
+          }
+        }, {
+          label: 'Check for Update',
+          click() {
+            // autoUpdater.checkForUpdates();
+            updater.checkForUpdates();
+          }
+        }, separatorItem, {
+          label: 'Services',
+          role: 'services',
+          submenu: []
         }, separatorItem, {
           label: 'Quit',
           accelerator: 'Command+Q',
@@ -176,7 +198,7 @@ function TemplateBuilder(platform, mainWindow) {
       {
         label: 'Learn More...',
         click() {
-          shell.openExternal('http://192.168.61.91:19001/maxwell/mx-workstation/wikis/home');
+          shell.openExternal(pkg.wiki);
         }
       }, separatorItem, {
         label: `Version ${app.getVersion()}`,
