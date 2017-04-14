@@ -20,12 +20,12 @@ function TemplateBuilder(platform, mainWindow) {
         {
           label: 'About ' + appName,
           role: 'about',
-          click() {
-            dialog.showMessageBox(mainWindow, {
-              buttons: ['OK'],
-              message: `${appName} Desktop ${app.getVersion()}`
-            });
-          }
+          // click() {
+          //   dialog.showMessageBox(mainWindow, {
+          //     buttons: ['OK'],
+          //     message: `${appName} Desktop ${app.getVersion()}`
+          //   });
+          // }
         }, {
           label: 'Check for Update',
           click() {
@@ -52,9 +52,7 @@ function TemplateBuilder(platform, mainWindow) {
         }, separatorItem, {
           label: 'Quit',
           accelerator: 'Command+Q',
-          click() {
-            app.quit();
-          }
+          role: 'quit'
         }
       ]
     };
@@ -84,9 +82,7 @@ function TemplateBuilder(platform, mainWindow) {
         }, separatorItem, {
           label: 'Quit',
           accelerator: 'Command+Q',
-          click() {
-            app.quit();
-          }
+          role: 'quit'
         }
       ]
     };
@@ -145,23 +141,21 @@ function TemplateBuilder(platform, mainWindow) {
         accelerator: 'CmdOrCtrl+Shift+-',
         visible: false,
         role: 'zoomout'
-      }, separatorItem, {
+      }
+    ]
+  };
+
+  if (process.env.NODE_ENV === 'development') {
+    this.viewMenu.submenu.push(
+      separatorItem, {
         label: 'Toggle Developer Tools',
         accelerator: isDarwin ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-        click(item, focusedWindow) {
-          if (focusedWindow) {
-            focusedWindow.toggleDevTools();
-          }
-        }
+        role: 'toggledevtools'
       }, {
         label: 'Reload',
         accelerator: 'CmdOrCtrl+R',
-        click(item, focusedWindow) {
-          if (focusedWindow) {
-            focusedWindow.reload();
-          }
-        }
-      }, separatorItem, {
+        role: 'reload'
+      }, {
         label: 'Back',
         accelerator: isDarwin ? 'Cmd+[' : 'Alt+Left',
         click: (item, focusedWindow) => {
@@ -174,8 +168,8 @@ function TemplateBuilder(platform, mainWindow) {
           focusedWindow.webContents.canGoForward() && focusedWindow.webContents.goForward();
         }
       }
-    ]
-  };
+    );
+  }
 
   this.windowMenu = {
     label: '&Window',
