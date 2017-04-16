@@ -141,17 +141,17 @@ function TemplateBuilder(platform, mainWindow) {
         accelerator: 'CmdOrCtrl+Shift+-',
         visible: false,
         role: 'zoomout'
-      }
+      }, separatorItem, {
+        label: 'Toggle Developer Tools',
+        accelerator: isDarwin ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+        role: 'toggledevtools'
+      },
     ]
   };
 
   if (process.env.NODE_ENV === 'development') {
     this.viewMenu.submenu.push(
-      separatorItem, {
-        label: 'Toggle Developer Tools',
-        accelerator: isDarwin ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-        role: 'toggledevtools'
-      }, {
+      {
         label: 'Reload',
         accelerator: 'CmdOrCtrl+R',
         role: 'reload'

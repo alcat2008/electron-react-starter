@@ -180,6 +180,19 @@ Then, use git to merge some latest commits:
 git pull upstream master
 ```
 
+## How to install native modules
+
+```sh
+npm install --save-dev electron-rebuild
+
+# Every time you run "npm install", run this
+./node_modules/.bin/electron-rebuild
+
+# On Windows if you have trouble, try:
+./node_modules/.bin/electron-rebuild.cmd
+```
+
+
 ## Questions
 
 If appears error when run `npm run dev`, Error: 

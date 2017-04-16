@@ -30,7 +30,7 @@ export default validate({
         name: 'static/media/[name].[hash:8].[ext]'
       }
     }],
-    noParse: [/ajv/]
+    // noParse: [/xxx/]
   },
 
   output: {
