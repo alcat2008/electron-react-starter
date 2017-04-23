@@ -9,6 +9,13 @@ class Ipc {
   init(mainWindow) {
     log('init ipc main');
 
+    ipcMain.on('print', () => {
+      mainWindow.webContents.print({
+        silent: true,
+        printBackground: false,
+      });
+    });
+
     ipcMain.on('ipc-message', (event, arg) => {
       log('arg => ', arg);
       const notification = notifier.notify(arg, {
