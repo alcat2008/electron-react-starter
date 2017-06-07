@@ -18,6 +18,8 @@ class Ipc {
 
     ipcMain.on('ipc-message', (event, arg) => {
       log('arg => ', arg);
+      event.sender.send('asynchronous-reply', mainWindow.webContents.getPrinters());
+
       const notification = notifier.notify(arg, {
         message: 'This is notification message',
         // icon: 'http://cl.ly/J49B/3951818241085781941.png',
