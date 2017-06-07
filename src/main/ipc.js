@@ -8,17 +8,27 @@ const log = debug('electron-react:main/ipc');
 class Ipc {
   init(mainWindow) {
     log('init ipc main');
+    this._printers = mainWindow.webContents.getPrinters();
 
-    ipcMain.on('print', () => {
+    function printToDevice(deviceName) {
       mainWindow.webContents.print({
         silent: true,
         printBackground: false,
+        deviceName,
+      });
+    }
+
+    ipcMain.on('print', (event, arg) => {
+      this._printers.forEach(item => {
+        setTimeout(() => {
+          printToDevice(item.name);
+        }, 0);
       });
     });
 
     ipcMain.on('ipc-message', (event, arg) => {
       log('arg => ', arg);
-      event.sender.send('asynchronous-reply', mainWindow.webContents.getPrinters());
+      event.sender.send('asynchronous-reply', this._printers);
 
       const notification = notifier.notify(arg, {
         message: 'This is notification message',
