@@ -17,6 +17,11 @@
   </head>
   <body>
     <div id="root"></div>
+    <p>
+      We are using node <script>document.write(process.versions.node)</script>,
+      Chrome <script>document.write(process.versions.chrome)</script>,
+      and Electron <script>document.write(process.versions.electron)</script>.
+    </p>
     <script>
       {
         const script = document.createElement('script');
