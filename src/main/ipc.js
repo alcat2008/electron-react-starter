@@ -18,7 +18,7 @@ class Ipc {
 
     ipcMain.on('ipc-message', (event, arg) => {
       log('arg => ', arg);
-      event.sender.send('asynchronous-reply', mainWindow.webContents.getPrinters());
+      // event.sender.send('asynchronous-reply', mainWindow.webContents.getPrinters());
 
       const notification = notifier.notify(arg, {
         message: 'This is notification message',

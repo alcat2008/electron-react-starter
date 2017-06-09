@@ -11,6 +11,8 @@ const Print = require('./main/printer');
 const log = debug('electron-react:main');
 log('main process begins initialize');
 
+process.env.NODE_ENV = 'production';
+
 let mainWindow = null;
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -44,7 +46,7 @@ const createWindow = () => {
   } else {
     // eslint-disable-next-line no-console
     console.log('** loadURL: ', `file://${__dirname}/index.html`);
-    mainWindow.loadURL(`file://${__dirname}/index.html`);
+    mainWindow.loadURL(`file://${__dirname}/../dist/index.html`);
   }
 
   mainWindow.webContents.on('did-finish-load', () => {

@@ -3,7 +3,7 @@
   "productName": "ElectronReact",
   "version": "0.1.0",
   "description": "Boilerplate to start electron project with a bunch of awesome react technologies",
-  "main": "dist/main.js",
+  "main": "src/main.production.js",
   "homepage": "https://github.com/alcat2008/electron-react-starter#readme",
   "wiki": "https://github.com/alcat2008/electron-react-starter/wikis/home",
   "repository": {
@@ -40,8 +40,9 @@
     "hot-server": "cross-env NODE_ENV=development node -r babel-register server.js",
     "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config config/webpack.config.electron.js --progress --profile --colors",
     "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config config/webpack.config.production.js --progress --profile --colors",
-    "build": "npm run build-main && npm run build-renderer",
-    "start": "cross-env NODE_ENV=production electron ./",
+    "build-bak": "npm run build-main && npm run build-renderer",
+    "build": "npm run build-renderer",
+    "start": "cross-env NODE_ENV=production DEBUG=electron-react:* electron ./",
     "flow-typed-install": "flow-typed install",
     "start-hot": "cross-env HOT=1 NODE_ENV=development DEBUG=electron-react:* electron -r babel-register -r babel-polyfill ./src/main.development",
     "postinstall-deprecated": "concurrently \"npm run flow-typed-install\" \"install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
@@ -51,7 +52,8 @@
     "package-linux": "npm run build && build --linux",
     "package-all": "npm run build && build -mwl",
     "cleanup": "mop -v",
-    "validate": "npm ls"
+    "validate": "npm ls",
+    "install": "HOME=~/.electron-gyp electron-rebuild --dist-url=https://npm.taobao.org/mirrors/atom-shell"
   },
   "build": {
     "productName": "ElectronReact",
@@ -74,8 +76,11 @@
     },
     "files": [
       "dist/",
+      "src/",
+      "node_modules/",
       "package.json"
     ],
+    "asar": false,
     "win": {
       "target": "squirrel"
     },
@@ -124,7 +129,7 @@
     "css-loader": "^0.26.1",
     "debug-menu": "^0.6.0",
     "devtron": "^1.4.0",
-    "electron": "1.7.2",
+    "electron": "1.6.4",
     "electron-builder": "^10.8.1",
     "electron-debug": "^1.1.0",
     "electron-devtools-installer": "^2.0.1",
@@ -174,6 +179,8 @@
     "electron-input-menu": "^2.1.0",
     "electron-notifications": "^1.0.0",
     "electron-simple-updater": "^1.2.0",
+    "electron-usb": "0.0.11",
+    "escpos-print": "^1.1.1",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "react": "^15.4.1",
@@ -184,7 +191,9 @@
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
-    "source-map-support": "^0.4.6"
+    "serialport": "^4.0.7",
+    "source-map-support": "^0.4.6",
+    "usb": "^1.2.0"
   },
   "devEngines": {
     "node": ">=6.x",
