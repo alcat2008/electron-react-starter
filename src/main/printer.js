@@ -5,6 +5,7 @@ const serialport = require('serialport');
 const usb = require('usb')
 const { Printer } = require('escpos-print');
 const { Network } = require('escpos-print/Adapters');
+const escpos = require('escpos');
 
 const log = debug('electron-react:main/printer');
 
@@ -29,6 +30,15 @@ class PrintManage {
       .catch(error => {
         log('printer catch => ', JSON.stringify(error));
       })
+
+
+    // Select the adapter based on your printer type
+    const device  = new escpos.USB();
+    // const device  = new escpos.Network('localhost');
+    // const device  = new escpos.Serial('/dev/usb/lp0');
+    log('escpos.USB() => ', JSON.stringify(device));
+    const printer = new escpos.Printer(device);
+    log('printer => ', JSON.stringify(printer));
   }
 }
 

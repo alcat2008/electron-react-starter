@@ -36,4 +36,4 @@ dist
 
 flow-typed
 .idea
-
+.vscode/

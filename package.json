@@ -180,6 +180,7 @@
     "electron-notifications": "^1.0.0",
     "electron-simple-updater": "^1.2.0",
     "electron-usb": "0.0.11",
+    "escpos": "^2.4.1",
     "escpos-print": "^1.1.1",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
