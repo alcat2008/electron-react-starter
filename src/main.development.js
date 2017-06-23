@@ -51,6 +51,12 @@ const createWindow = () => {
     mainWindow.focus();
   });
 
+  // if the render process crashes, reload the window
+  win.webContents.on('crashed', () => {
+    mainWindow.destroy();
+    createWindow();
+  });
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
