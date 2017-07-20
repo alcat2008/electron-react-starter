@@ -172,6 +172,7 @@
     "debug": "^2.6.3",
     "electron-contextmenu-middleware": "^1.0.3",
     "electron-input-menu": "^2.1.0",
+    "electron-log": "^2.2.7",
     "electron-notifications": "^1.0.0",
     "electron-simple-updater": "^1.2.0",
     "less": "^2.7.1",

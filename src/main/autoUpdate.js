@@ -1,10 +1,8 @@
 
 const { dialog } = require('electron');
-const debug = require('debug');
+const log = require('electron-log');
 const updater = require('electron-simple-updater');
 const pkg = require('../../package.json');
-
-const log = debug('mx-dsl:main/autoUpdate');
 
 const AppName = pkg.productName + ' 更新';
 const Message = {
@@ -19,11 +17,11 @@ function updateHandle(mainWindow) {
   updater.init({
     checkUpdateOnStart: false,
     autoDownload: false,
-    // logger: log,
+    logger: log,
   });
 
   updater.on('update-available', (meta) => {
-    log('[updater] update avaiable', meta.version);
+    log.info('[updater] update avaiable', meta.version);
     dialog.showMessageBox(mainWindow, {
       type: 'info',
       buttons: ['确定'],
@@ -46,7 +44,7 @@ function updateHandle(mainWindow) {
   updater.on('update-downloading', () => {});
 
   updater.on('update-downloaded', (meta) => {
-    log('[updater] update downloaded', meta.version);
+    log.info('[updater] update downloaded', meta.version);
     const index = dialog.showMessageBox(mainWindow, {
       type: 'info',
       buttons: ['现在重启', '稍后重启'],
@@ -65,7 +63,7 @@ function updateHandle(mainWindow) {
   });
 
   updater.on('error', (err) => {
-    log('[updater] update error', err);
+    log.error('[updater] update error', err);
     dialog.showMessageBox(mainWindow, {
       type: 'error',
       // icon: appIcon,

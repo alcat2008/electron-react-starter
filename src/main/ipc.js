@@ -1,13 +1,11 @@
 
 const { ipcMain } = require('electron');
-const debug = require('debug');
+const log = require('electron-log');
 const notifier = require('electron-notifications');
-
-const log = debug('electron-react:main/ipc');
 
 class Ipc {
   init(mainWindow) {
-    log('init ipc main');
+    log.info('init ipc main');
 
     ipcMain.on('print', () => {
       mainWindow.webContents.print({
@@ -17,7 +15,7 @@ class Ipc {
     });
 
     ipcMain.on('ipc-message', (event, arg) => {
-      log('arg => ', arg);
+      log.info('arg => ', arg);
       event.sender.send('asynchronous-reply', mainWindow.webContents.getPrinters());
 
       const notification = notifier.notify(arg, {
@@ -35,19 +33,19 @@ class Ipc {
         } else if (buttonIndex === 1) {
           // open options.url
         }
-        log(JSON.stringify(options)); // eslint-disable-line
+        log.info(JSON.stringify(options)); // eslint-disable-line
         notification.close();
       });
       // event.sender.send('ipc-message-reply', 'ipc-message-reply');
     });
 
     ipcMain.on('asynchronous-message', (event, arg) => {
-      log(arg);  // prints "ping"
+      log.info(arg);  // prints "ping"
       event.sender.send('asynchronous-reply', 'pong');
     });
 
     ipcMain.on('synchronous-message', (event, arg) => {
-      log(arg);  // prints "ping"
+      log.info(arg);  // prints "ping"
       event.returnValue = 'pong';
     });
   }

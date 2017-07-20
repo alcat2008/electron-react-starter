@@ -1,14 +1,15 @@
 
 const { app, BrowserWindow, Menu, Tray, dialog, nativeImage } = require('electron'); // eslint-disable-line
 const path = require('path');
-const debug = require('debug');
+const log = require('electron-log');
 const { createMenu } = require('./main/menu');
 const { installDevTools } = require('./main/devTools');
 const Ipc = require('./main/ipc');
 const { updateHandle } = require('./main/autoUpdate');
 
-const log = debug('electron-react:main');
-log('main process begins initialize');
+log.transports.file.level = 'info';
+log.transports.console.level = 'debug';
+log.info('main process begins initialize');
 
 let mainWindow = null;
 const isDev = process.env.NODE_ENV === 'development';
@@ -38,11 +39,11 @@ const createWindow = () => {
 
   if (isDev) {
     // eslint-disable-next-line no-console
-    console.log('** loadURL: ', `file://${__dirname}/public/index.html`);
+    log.info('** loadURL: ', `file://${__dirname}/public/index.html`);
     mainWindow.loadURL(`file://${__dirname}/public/index.html`);
   } else {
     // eslint-disable-next-line no-console
-    console.log('** loadURL: ', `file://${__dirname}/index.html`);
+    log.info('** loadURL: ', `file://${__dirname}/index.html`);
     mainWindow.loadURL(`file://${__dirname}/index.html`);
   }
 
